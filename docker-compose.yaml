@@ -1,0 +1,9 @@
+services:
+  app:
+    build: .
+    container_name: propertypal_bot
+    command: tail -f /dev/null
+    ports:
+      - 8080:80
+    volumes:
+      - .:/code
