@@ -37,15 +37,7 @@ def get_page(client ,url):
     # print(url)
     
     html = HTMLParser(resp.text)
-    
-    # next_page = next_page(html)
-    
-    # if html.css_first('a[aria-label="next page"]'):
-    #     next_page = html.css_first('a[aria-label="next page"]').attributes
-    # else:
-    #     next_page = {"href": False}
     return Response(body_html=html, next_page=next_page(html))
-    # return all_a_tags
 
 def extract_text(html, selector, index ):
     try:
@@ -62,9 +54,9 @@ def parse_detail(html, link):
         return None
     
     
-    address_line1 = extract_text(html, 'div.sc-ccfad107-0 > h1',0)
+    address_line1 = extract_text(html, 'div.sc-240613ee-1 > h1',0)
     # print(address_line1)
-    address_line2 = extract_text(html,'div.sc-ccfad107-0 > p',0)
+    address_line2 = extract_text(html,'div.sc-240613ee-1 > p',0)
     # print(address_line2)
     
     # Extracting the address elements from the address_line1 and address_line2
@@ -91,9 +83,9 @@ def parse_detail(html, link):
     
     new_property = Property(
         web_id = link.split('/')[-1],
-        title=extract_text(html, "div.sc-53bec0d3-1 > h1", 0),
-        price=extract_text(html, "p.pp-property-price", 0),
-        description=extract_text(html, "div.sc-1898sr3-1 > p.FViVo", 0),
+        title=extract_text(html, "div.sc-240613ee-1 > h1", 0),
+        price=extract_text(html, "strong.pp-property-price-bold", 0),
+        description=extract_text(html, "div.pp-property-description", 0),
         img=src_attribute,
         # img=html.css_first("section.fixsrN > img").attributes['src'],
         link= urljoin(BASE_URL, link),
