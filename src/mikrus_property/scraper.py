@@ -5,8 +5,8 @@ from selectolax.parser import HTMLParser
 from urllib.parse import urljoin
 import re
 import time
-
-
+import logger
+import logging
 
 BASE_URL = 'https://www.propertypal.com'
 url = 'https://www.propertypal.com/property-for-sale/lisburn-area'
@@ -124,7 +124,7 @@ def detail_page_loop(client, page):
         parse_detail(page.body_html, link)
 
 def pagination_loop(client):
-    url = 'https://www.propertypal.com/property-for-sale/lisburn-area'
+    url = 'https://www.propertypal.com/property-for-sale/lisburn'
     while True:
         page = get_page(client, url)
         detail_page_loop(client, page)
@@ -137,24 +137,11 @@ def pagination_loop(client):
             time.sleep(1)
 
 def main():
+    logging.info('-----Scraping Start-----')
     client = httpx.Client()
     pagination_loop(client)
-
-    # url = 'https://www.propertypal.com/property-for-sale/lisburn'
-    # a = get_page(client,url)
-    # print(a.next_page)
-
-    # for link in a:
-    #     if link.css_first('p'):
-    #         p_text = link.css_first('p').text()
-    #         if p_text == "Next":
-                
-    #             next_url = link.attributes['href']
-    #             print(next_url)
-    #     else:
-    #         print("this is not a Next page link")
-        
-            
+    logging.info('-----Scraping End----- \n')
+    
         
 
 if __name__ == "__main__":

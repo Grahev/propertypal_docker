@@ -1,1 +1,7 @@
 .env
+
+__pycache__/
+log.txt
+src/mikrus_property/data.csv
+src/mikrus_property/test.py
+

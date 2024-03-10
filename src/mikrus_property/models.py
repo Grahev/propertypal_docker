@@ -6,6 +6,8 @@ import sqlite3
 import psycopg2
 import os
 from dotenv import load_dotenv
+import logger
+import logging
 
 # Load environment variables from .env file
 load_dotenv()
@@ -110,7 +112,7 @@ class Property:
                       property_obj.key_info.reception, property_obj.key_info.heating, property_obj.key_info.epc,
                       property_obj.key_info.size, property_obj.key_info.status, datetime.now())
             c.execute(query, params)
-
+            logging.info(f"Added new property: {property_obj.title}")
             print(f"Added new property: {property_obj.title}")
 
         # Commit changes and close the connection
