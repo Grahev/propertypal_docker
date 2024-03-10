@@ -5,4 +5,4 @@
 #cd /root/propertypal
 
 # Run the desired Docker command
-docker exec f3262ed1add9 python3 src/mikrus_property/scraper.py
+docker exec 2750cc82d5ec python3 src/mikrus_property/scraper.py
